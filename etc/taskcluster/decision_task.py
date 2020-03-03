@@ -451,6 +451,7 @@ def windows_uwp_x64():
         .with_features("taskclusterProxy")
         .with_scopes("secrets:get:project/servo/windows-codesign-cert/latest")
         .with_script(
+            "python mach pre-package-check",
             "python mach build --dev --target=x86_64-uwp-windows-msvc",
             "python mach package --dev --target=x86_64-uwp-windows-msvc --uwp=x64 --fail-on-missing-signing-cert",
             "python ./etc/test_uwp.py",
